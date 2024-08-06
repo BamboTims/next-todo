@@ -57,40 +57,26 @@ const TodoList: React.FC = () => {
       >
         Add Todo
       </button>
-      <l-tailspin
-        size="40"
-        stroke="5"
-        speed="0.9"
-        color="#fff"
-        class="h-10 w-10"
-      ></l-tailspin>
-      {loading ? (
-        <l-tailspin
-          size="40"
-          stroke="5"
-          speed="0.9"
-          color="black"
-        ></l-tailspin>
-      ) : (
-        <table className="min-w-full bg-white mt-4">
-          <thead>
-            <tr>
-              <th className="py-2 w-1/2">Task</th>
-              <th className="py-2 2-1/2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {todos.map((todo) => (
-              <TodoItem
-                key={todo.id}
-                todo={todo}
-                onEdit={handleEditTodo}
-                onDelete={handleDeleteTodo}
-              />
-            ))}
-          </tbody>
-        </table>
-      )}
+
+      <table className="min-w-full bg-white mt-4">
+        <thead>
+          <tr>
+            <th className="py-2 w-1/2">Task</th>
+            <th className="py-2 2-1/2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {todos.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              onEdit={handleEditTodo}
+              onDelete={handleDeleteTodo}
+            />
+          ))}
+        </tbody>
+      </table>
+
       {modalOpen && (
         <TodoModal
           todo={currentTodo}

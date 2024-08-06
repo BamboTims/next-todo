@@ -13,19 +13,19 @@ export const GET = async () => {
   }
 };
 
-export const POST = async (req: NextApiRequest) => {
+export const POST = async (req: Request) => {
   try {
     const body = await req.json();
     console.log(body);
     const newTodo = await db.insert(todoTable).values(body);
     return new Response(JSON.stringify(newTodo), { status: 201 });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
     return new Response(`Invalid data error ${error.message}`, { status: 400 });
   }
 };
 
-export const PUT = async (req: NextApiRequest) => {
+export const PUT = async (req: Request) => {
   try {
     const body = await req.json();
     console.log(body);
@@ -34,13 +34,13 @@ export const PUT = async (req: NextApiRequest) => {
       .set({ task: body.newTask })
       .where(eq(todoTable.id, body.id));
     return new Response(JSON.stringify(updatedTodo), { status: 200 });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
     return new Response("Invalid data", { status: 400 });
   }
 };
 
-export const DELETE = async (req: NextApiRequest) => {
+export const DELETE = async (req: Request) => {
   try {
     const body = await req.json();
     const { id } = body;
@@ -49,7 +49,7 @@ export const DELETE = async (req: NextApiRequest) => {
     }
     await db.delete(todoTable).where(eq(todoTable.id, id));
     return new Response(null, { status: 204 });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
     return new Response(error.message, { status: 400 });
   }

@@ -46,7 +46,7 @@ const TodoModal: React.FC<TodoModalProps> = ({ todo, onClose, onSave }) => {
 
       onSave();
       onClose();
-    } catch (error) {
+    } catch (error: any) {
       setError(error?.message);
     }
   };
