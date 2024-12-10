@@ -13,11 +13,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 import { OAuthButtons } from "./oauth-signin";
 
-export default async function Login({
-  searchParams,
-}: {
-  searchParams: { message: string };
-}) {
+export default async function Login({ searchParams }) {
   const supabase = await createClient();
 
   const {
@@ -38,7 +34,10 @@ export default async function Login({
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
-          <form id="login-form" className="grid gap-4">
+          <form
+            id="login-form"
+            className="grid gap-4"
+          >
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -66,14 +65,21 @@ export default async function Login({
                 {searchParams.message}
               </div>
             )}
-            <Button formAction={emailLogin} className="w-full">
+            <Button
+              formAction={emailLogin}
+              className="w-full"
+            >
               Login
             </Button>
           </form>
           <OAuthButtons />
           <div className="text-center text-sm">
             Don&apos;t have an account?{" "}
-            <button formAction={signup} form="login-form" className="underline">
+            <button
+              formAction={signup}
+              form="login-form"
+              className="underline"
+            >
               Sign up
             </button>
           </div>
